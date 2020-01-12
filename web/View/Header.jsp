@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="CssLoader.jsp"/>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <nav>
      <div class="nav-wrapper #311b92 deep-purple darken-4">
          <a href="" class="brand-logo right">부산경상대학교</a>
@@ -23,6 +21,20 @@
          </div>
      </div>
  </nav>
+<%
+    //유저 아이디 등록
+    String UserId = "12345";
+    if(UserId.equals("")){
+%>
+
 <div class = "DeskTopLogin">
     <jsp:include page="login.jsp"></jsp:include>
 </div>
+
+<%
+    }else{
+        %>
+            <jsp:include page="Main.jsp"/>
+        <%
+    }
+%>

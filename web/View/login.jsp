@@ -16,7 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 ">
-                        <input class="validate invalid " type="password" name="password" id="password" required="">
+                        <input class="validate invalid" type="password" name="password" id="password" required="">
                         <label for="password" class="">비밀번호 혹은 생년월일 앞자리를 입력해주세요</label>
                     </div>
                 </div>
