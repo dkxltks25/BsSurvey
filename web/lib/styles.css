@@ -1,0 +1,121 @@
+/*
+    Survey의 모든 css를 관리하는 파일입니다.
+    
+*/
+
+/*메인*/
+.index__Contanier_wrap{
+    width:1200PX;
+    margin:20px auto;
+}
+
+.index__Container{
+    width:85%;
+    margin:0px auto;
+}
+.SurveyTitle{
+    width:85%;
+    margin:0px auto;
+}
+.SurveyItem{
+    width:85%;
+    margin:0px auto;
+}
+.SurveyItemTop{
+    display:flex;
+    justify-content: space-between;
+}
+.SurveyItemTop div:first-child{
+    width:60%;
+}
+.SurveyItemTools{
+    float:right;
+}
+
+
+/*아이콘 버튼 효과 제외*/
+.Button-border-outline{
+    background-color:white;
+}
+
+/*SurveyItem click*/
+.SurveyItem-focus{
+    border:1px solid blue;
+}
+.SurveyItem-unfocus > .SurveyItemBottom{
+    visibility: hidden;
+    height:0px;
+}
+.SurveyItem-unfocus > .SurveyItemTop div:nth-child(2){
+    visibility: hidden;
+}
+/*SurveyItemTools 위치*/
+.SurveyItemTools{
+    position: relative;
+    transition: 0.3s;
+}
+.SurveyFormWrap{
+    display:flex;
+    justify-content: space-between;
+    width:90%;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.SurveyShortAnswer{
+    width:20%;
+}
+/*푸터*/
+.page-footer{
+    width:100%;
+    position: fixed;
+    bottom:0;
+}
+
+select{
+    display:inline;
+}
+
+.SmallInput {
+    width:200px;
+}
+
+.SurveyItemRow{
+    width:400px;
+    display:flex;
+    justify-content: space-around;
+}
+.SurveyItemRow span{
+    margin-right: 10px;
+}
+.SurveyItemRow button{
+    margin-left:10px;
+}
+
+.SurveyItemColumn{
+    width:400px;
+    display:flex;
+    justify-content: space-around;
+}
+.SurveyItemColumn span{
+    margin-right: 10px;
+}
+.SurveyItemColumn button{
+    margin-left:10px;
+}
+
+.SurveyItemRowWrap{
+    width:50%;
+    float:left;
+}
+.SurveyItemColumnWrap{
+    float:right;
+}
+.btn-floating{
+    min-width: 40px;
+}
+.SurveyItemBottom{
+    clear:both;
+}
+.SurveyRowColumn{
+    float:left;
+}
