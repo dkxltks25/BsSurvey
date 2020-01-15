@@ -24,7 +24,7 @@
 <%
     //유저 아이디 등록
     String UserId = "12345";
-    if(!UserId.equals("")){
+    if(UserId.equals("")){
 %>
 
 <div class = "DeskTopLogin">
