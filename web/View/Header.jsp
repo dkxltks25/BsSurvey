@@ -23,12 +23,12 @@
  </nav>
 <%
     //유저 아이디 등록
-    String UserId = "12345";
-    if(UserId.equals("")){
+    String UserId = (String)session.getAttribute("userid");
+    if(UserId == null){
 %>
 
 <div class = "DeskTopLogin">
-    <jsp:include page="login.jsp"></jsp:include>
+    <jsp:include page="login.jsp"/>
 </div>
 
 <%

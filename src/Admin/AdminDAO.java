@@ -59,5 +59,6 @@ public class AdminDAO {
     //관리자 설문지
     public ResultSet AdminSurveyList(String AdminId){
         String Sql = "Select * from sasu_suv where adm_id = 'dkxltks25';";
+        return rs ;
     }
 }

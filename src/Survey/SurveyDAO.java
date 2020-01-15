@@ -13,12 +13,11 @@ public class SurveyDAO {
     private ResultSet rs;
 
     public ResultSet UserSurveyList(String StudentNumber){
-        String Sql = "select * from sasu_std as S \n" +
-                "\tinner join sasu_suvdept as D\t\n" +
-                "        on S.stu_dept = D.Dept_name \n" +
-                "\t\t\tinner join sasu_suv as SU\n" +
-                "\t\t\t\ton SU.suv_suvId = D.suv_id\n" +
-                "\t\t\t\twhere S.stu_stuno = ?";
+        String Sql = "\tselect D.dept_id, SU.SUV_SUVID,SU.suv_name,Su.Suv_descrip,date(su.suv_stime) As ST,date(su.suv_ftime) AS FT,if(now() < SU.suv_ftime,if(now() > Su.suv_stime,'A','U'),'U') as Able from sasu_std as S\n" +
+                "\t\t\t\t\tinner join sasu_suvdept as D\n" +
+                "\t\t\t\t\ton S.stu_dept = D.Dept_name \n" +
+                "\t\t\t\t\tinner join sasu_suv as SU\n" +
+                "\t\t\t\t\ton SU.suv_suvId = D.suv_id where S.stu_stuno = ?";
         try{
             conn = new ConnectionDAO().GetConnection();
             pstmt1 = conn.prepareStatement(Sql);
@@ -39,6 +38,7 @@ public class SurveyDAO {
                 "\t\t\twhere SI.SUV_Id = ?";
         try{
             conn = new ConnectionDAO().GetConnection();
+
             pstmt1 = conn.prepareStatement(Sql);
             pstmt1.setString(1,SurveyId);
             rs = pstmt1.executeQuery();

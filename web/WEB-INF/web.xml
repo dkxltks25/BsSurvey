@@ -81,4 +81,20 @@
         <servlet-name>Survey</servlet-name>
         <url-pattern>/Admin/Survey</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>SurveyForm</servlet-name>
+        <jsp-file>/View/UserSurveyForm.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SurveyForm</servlet-name>
+        <url-pattern>/survey/user</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>lib</servlet-name>
+    <jsp-file>/lib/UserForm.js</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>lib</servlet-name>
+        <url-pattern>/lib/UserForm.js</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -2,6 +2,7 @@ package Student;
 
 import Connection.ConnectionDAO;
 
+import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,27 +21,25 @@ public class StudentDAO {
 
     }
     //SHA512 암호화
-    private static String getSha512(String pwd) {
-        String encPwd = "";
 
+    public static String getSHA512(String input){
+
+        String toReturn = null;
         try {
-            // SHA-512 내장 메소드 사용 어떤식으로 암호화 처리 되는지는 알 수 없음
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
-            byte[] bytes = pwd.getBytes(Charset.forName("UTF-8"));
-            md.update(bytes); // 암호화 처리된 게 bytes 안에 있음(아직)
-
-            // 암호화 처리 된게 문자열로 바뀐다.
-            encPwd = Base64.getEncoder().encodeToString(md.digest());
-
-
-        } catch (NoSuchAlgorithmException e) {
+            MessageDigest digest = MessageDigest.getInstance("SHA-512");
+            digest.reset();
+            digest.update(input.getBytes("utf8"));
+            toReturn = String.format("%0128x", new BigInteger(1, digest.digest()));
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return encPwd;
+
+        return toReturn.toUpperCase();
     }
+
     //사용자 로그인
     public int UserLogin(String UserId,String UserPassword){
-        String sql = "Select * from Student where std_stuNo = ?";
+        String sql = "Select stu_password  from sasu_std where stu_stuNo = ?";
         int result = 0;
         conn = new ConnectionDAO().GetConnection();
         try{
@@ -48,7 +47,9 @@ public class StudentDAO {
             pstmt1.setString(1,UserId);
             rs = pstmt1.executeQuery();
             if(rs.next()){
-                if(rs.getString(1).equals(UserPassword)){
+                System.out.println(rs.getString(1));
+                System.out.println(getSHA512(UserPassword));
+                if(rs.getString(1).equals(getSHA512(UserPassword))){
                     result = 1;
                 }else{
                     result = 0;
