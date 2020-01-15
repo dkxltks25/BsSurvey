@@ -1,0 +1,38 @@
+.DeskTopLogin{
+    width:40%;
+    margin:0px auto;
+
+}
+.DeskTopLogin{
+    text-align: center;
+    margin:75px auto;
+}
+.login__Container div{
+    padding:10px 20px 20px 10px;
+}
+.login__Container div form{
+
+}
+
+body{
+    background-color: #efefef;
+}
+
+.mobileNav{
+    width:100%;
+}
+.mobile_login{
+    width:400px;
+}
+
+.mainSurveyList{
+    width:80%;
+    margin:0px auto;
+    display:grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.mainSurveyList div img{
+    height:200px;
+}
