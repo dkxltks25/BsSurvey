@@ -6,6 +6,8 @@
 <%@ page import="java.sql.Blob" %>
 <%@ page import="org.apache.axis.encoding.Base64" %>
 <%@ page import="jdk.internal.util.xml.impl.Input" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page import="java.io.IOException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -41,11 +43,12 @@
         .containerWrap {
             display: table-cell;
             vertical-align: middle;
-            height: 100%;
+            height: 95%;
         }
 
         .container {
             min-width: 800px;
+            padding:40px 40px 80px 40px;
         }
     </style>
 </head>
@@ -56,17 +59,16 @@
     ResultSet rs = new SurveyDAO().GetSurveyItem(idx);
     if(rs.next()){
         InputStream blob = rs.getBinaryStream("suv_item");
+
         byte [] t = blob.readAllBytes();
-        String str2 = new String(t);
-        %>
+        String str2 = new String(t,"UTF-8");
+         %>
             <script>
                 var collection = <%=str2%>;
                 collection = JSON.parse(collection);
             </script>
         <%
     }
-
-
 
 %>
 

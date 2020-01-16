@@ -10,7 +10,7 @@
 <div class="login__Container">
     <div class="col s12 m6">
         <div class="card">
-            <form class="col s12 " method="post">
+            <form class="col s12 " method="post" action="../Action/AdminLoginAction.jsp">
                 <div class="row">
                     <div class="col s12"></div>
                 </div>
@@ -30,7 +30,7 @@
                 <br>
                 <div style="text-align: center;">
                     <div class="row">
-                        <button type="submit" name="btn_login" class="col s12 btn btn-large waves-effect waves-light deep-purple">
+                        <button type="submit" name="btn_login" class="col s12 btn btn-large waves-effect waves-light">
                             Login
                         </button>
                     </div>

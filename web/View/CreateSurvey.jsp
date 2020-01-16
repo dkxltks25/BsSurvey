@@ -25,6 +25,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+<nav>
+    <div class="nav-wrapper  darken-4">
+        <a href="" class="brand-logo left">설문지 이름</a>
+        <ul  class="right hide-on-med-and-down">
+            <li><a href="collapsible.html">미리보기</a></li>
+            <li><a href="collapsible.html">저장
+            </a></li>
+        </ul>
+        <div class="nav-content #311b92 deep-purple darken-4">
+
+        </div>
+    </div>
+</nav>
 <div class = "index__Contanier_wrap">
     <div class = "index__Container">
     </div>

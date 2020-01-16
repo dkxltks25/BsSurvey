@@ -1,5 +1,6 @@
 package Admin;
 import Connection.ConnectionDAO;
+import Student.StudentDAO;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -36,7 +37,7 @@ public class AdminDAO {
     }
     //사용자 로그인
     public int UserLogin(String UserId,String UserPassword){
-        String sql = "Select ADM_pw from SASU_ADM where adm_ADMID = ?";
+        String sql = "Select ADM_pw from SASU_ADM where adm_ID = ?";
         int result = 0;
         conn = new ConnectionDAO().GetConnection();
         try{
@@ -44,8 +45,12 @@ public class AdminDAO {
             pstmt1.setString(1,UserId);
             rs = pstmt1.executeQuery();
             if(rs.next()){
-                if(rs.getString(1).equals(getSha512(UserPassword))){
+                out.println(new StudentDAO().getSHA512(UserPassword));
+                out.println(UserId);
+                if(rs.getString(1).equals(new StudentDAO().getSHA512(UserPassword))){
                     result = 1;
+                }else{
+                    return 0;
                 }
             }
         }catch (Exception e){
@@ -58,7 +63,23 @@ public class AdminDAO {
     }
     //관리자 설문지
     public ResultSet AdminSurveyList(String AdminId){
-        String Sql = "Select * from sasu_suv where adm_id = 'dkxltks25';";
+        String Sql = "Select * from sasu_suv where adm_id = ?";
+        ResultSet rs = null;
+        try{
+            conn = new ConnectionDAO().GetConnection();
+            pstmt1 = conn.prepareStatement(Sql);
+            pstmt1.setString(1,AdminId);
+            rs = pstmt1.executeQuery();
+        }catch (Exception e){
+            out.println(e.toString());
+            e.printStackTrace();
+            rs = null;
+        }finally {
+            pstmt1 = null;
+            conn = null;
+        }
         return rs ;
     }
+    //관리자 등급
+
 }

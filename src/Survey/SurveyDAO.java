@@ -32,10 +32,11 @@ public class SurveyDAO {
         return rs;
     }
     public ResultSet GetSurveyItem(String SurveyId){
-        String Sql ="select * from sasu_suv As SU\n" +
+        String Sql ="select Su.*, CONVERT(suv_item USING utf8) as suv_item from sasu_suv As SU\n" +
                 "\tinner join sasu_suvitem AS SI\n" +
                 "\t\ton SU.SUV_SUVID = SI.suv_id\n" +
-                "\t\t\twhere SI.SUV_Id = ?";
+                "\t\t\twhere SI.SUV_Id = ?;\n" +
+                "\t";
         try{
             conn = new ConnectionDAO().GetConnection();
 

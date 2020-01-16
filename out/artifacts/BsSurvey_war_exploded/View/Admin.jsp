@@ -13,14 +13,17 @@
 
 </head>
 <body>
+
 <%
-    String UserId = "12345";
+
+
+    String UserId = (String)session.getAttribute("adm_id");
 %>
     <nav>
         <div class="nav-wrapper waves-green  ">
             <a href="#" class="brand-logo center">BsKsAdmin</a>
             <%
-                if(!UserId.equals("")){
+                if(UserId != null){
             %>
             <form>
                 <div class="input-field">
@@ -44,10 +47,9 @@
 
     <section>
         <%
-            if(!UserId.equals("")){
+            if(UserId != null){
         %>
             <%@include file="AdminMain.jsp"%>
-
         <%
             }else{
         %>
@@ -58,7 +60,7 @@
     </section>
 
 <%
-    if(!UserId.equals("")){
+    if(UserId != null){
         %>
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large red">
