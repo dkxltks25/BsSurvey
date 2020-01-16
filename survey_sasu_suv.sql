@@ -34,7 +34,7 @@ CREATE TABLE `sasu_suv` (
   `datasys2` varchar(1) DEFAULT NULL,
   `datasys3` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`SUV_SUVID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `sasu_suv` (
 
 LOCK TABLES `sasu_suv` WRITE;
 /*!40000 ALTER TABLE `sasu_suv` DISABLE KEYS */;
-INSERT INTO `sasu_suv` VALUES (3,'dkxltks25',NULL,'2020학년도 신입생 만족도조사','신입생을 대상으로 실시하는 간단한 설문조사입니다.','2020-01-16 00:00:00','2020-01-25 00:00:00','2020-01-14 15:37:24','U','dkxltks25 박재홍'),(6,'dkxltks25',NULL,'설문지1','123123123','2020-01-15 20:34:54','2020-01-15 20:34:54','2020-01-15 20:36:13','U','dkxltks25 박재홍');
+INSERT INTO `sasu_suv` VALUES (3,'dkxltks25',NULL,'2020학년도 신입생 만족도조사','신입생을 대상으로 실시하는 간단한 설문조사입니다.','2020-01-16 00:00:00','2020-01-25 00:00:00','2020-01-14 15:37:24','U','dkxltks25 박재홍'),(6,'dkxltks25',NULL,'설문지1','123123123','2020-01-15 20:34:54','2020-01-15 20:34:54','2020-01-15 20:36:13','U','dkxltks25 박재홍'),(7,'dkxltks25',NULL,'2020학년도 식단조사',NULL,'2020-01-16 13:28:13','2020-01-16 13:28:13','2020-01-16 13:28:39','A','dkxltks25 박재홍');
 /*!40000 ALTER TABLE `sasu_suv` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-15 21:18:39
+-- Dump completed on 2020-01-16 16:41:53

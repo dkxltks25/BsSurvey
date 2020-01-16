@@ -36,7 +36,7 @@ CREATE TABLE `sasu_suvdept` (
 
 LOCK TABLES `sasu_suvdept` WRITE;
 /*!40000 ALTER TABLE `sasu_suvdept` DISABLE KEYS */;
-INSERT INTO `sasu_suvdept` VALUES (3,'30000','부동산'),(3,'30001','부서1'),(3,'30002','소프트웨어전공'),(3,'30003','박재홍'),(3,'30004','테스트'),(6,'30000','부동산'),(6,'30001','부서1'),(6,'30002','소프트웨어전공'),(6,'30003','박재홍'),(6,'30004','테스트');
+INSERT INTO `sasu_suvdept` VALUES (3,'30000','부동산'),(3,'30001','부서1'),(3,'30002','소프트웨어전공'),(3,'30003','박재홍'),(3,'30004','테스트'),(6,'30000','부동산'),(6,'30001','부서1'),(6,'30002','소프트웨어전공'),(6,'30003','박재홍'),(6,'30004','테스트'),(7,'30000','부동산'),(7,'30001','부서1'),(7,'30002','소프트웨어전공'),(7,'30003','박재홍'),(7,'30004','테스트');
 /*!40000 ALTER TABLE `sasu_suvdept` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-15 21:18:39
+-- Dump completed on 2020-01-16 16:41:53
