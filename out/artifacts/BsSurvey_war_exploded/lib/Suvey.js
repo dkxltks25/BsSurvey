@@ -103,7 +103,7 @@ function Survey(container) {
 }
 
 //설문지 제목 생성
-Survey.prototype.createSurveyTitle = function (title, Descrip) {
+Survey.prototype.createSurveyTitle = function(title,Descrip) {
     const SurveyTitle = createDivTag([this.SurveyTitle, this.MaterialPanel])
     const InputTitle = createDivTag([this.SurveyTitleInput, this.MaterialInput])
     let placeholder = '제목'
@@ -115,7 +115,7 @@ Survey.prototype.createSurveyTitle = function (title, Descrip) {
         this.SurveyDescripInput,
         this.MaterialInput,
     ])
-    const TextAreaTag = createTextArea([this.MaterialTextArea], placeholder, Descrip)
+    const TextAreaTag = createTextArea([this.MaterialTextArea], placeholder,Descrip)
     TextAreaTitle.appendChild(TextAreaTag)
 
     SurveyTitle.appendChild(InputTitle)
@@ -124,7 +124,7 @@ Survey.prototype.createSurveyTitle = function (title, Descrip) {
 }
 
 //항목 관리 도구
-Survey.prototype.createSurveyTools = function () {
+Survey.prototype.createSurveyTools = function() {
     const SurveyTools = createDivTag([
         this.SurveyItemsTools,
         this.MaterialPanel,
@@ -144,7 +144,7 @@ Survey.prototype.createSurveyTools = function () {
 }
 
 //항목 아이템 생성
-Survey.prototype.createItem = function (Data) {
+Survey.prototype.createItem = function(Data){
     const SurveyItem = createDivTag([
         this.SurveyItemName,
         this.MaterialPanel,
@@ -160,7 +160,7 @@ Survey.prototype.createItem = function (Data) {
     const SurveyItemTitle = createInput([
         this.SurveyItemTitleName,
         this.MaterialInput,
-    ], "text", TitleText)
+    ],"text",TitleText)
     //SelectBox영역
     const SurveySelectDiv = createDivTag([this.MaterialInput])
     const SurveySelectOption = createSelectTag(
@@ -554,7 +554,10 @@ const createInput = (
     const InputTag = document.createElement('input')
     InputTag.setAttribute('type', type)
     InputTag.setAttribute('placeholder', placeholder)
-    InputTag.setAttribute('value', text);
+    if(text === 'text'){
+        text = "";
+    }
+    InputTag.setAttribute('value',text);
     if (typeof InputName === 'string') {
         InputTag.classList.add(InputName)
     } else if (InputName !== null && InputName !== undefined) {
@@ -562,10 +565,10 @@ const createInput = (
     }
     return InputTag
 }
-const createTextArea = (TextAreaName, placeholder, text = "") => {
+const createTextArea = (TextAreaName, placeholder,text="") => {
     const TextAreaTag = document.createElement('textarea')
     TextAreaTag.setAttribute('placeholder', placeholder)
-    TextAreaTag.innerHTML = text;
+    TextAreaTag.innerHTML=text;
     TextAreaName.map(index => TextAreaTag.classList.add(index))
     return TextAreaTag
 }
@@ -657,7 +660,7 @@ const createTableTag = TableName => {
 }
 //특정 중복 기능을 수행하는 함수
 //위치 값 계산
-const calculatePoistion = () => { }
+const calculatePoistion = () => {}
 
 //특정태그의 하위 자식들을 삭제하는 함수
 const deleteTagChild = Tag => {
@@ -671,8 +674,7 @@ const deleteTagChild = Tag => {
 }
 
 // 사용자 설문지 폼 저장하기
-Survey.prototype.SaveSurvey = function () {
-    console.log(11);
+Survey.prototype.SaveSurvey = function() {
     const { children } = this.Survey
     const CollectionItem = {}
     const ItemArray = []
@@ -687,10 +689,10 @@ Survey.prototype.SaveSurvey = function () {
                 //제목 밑 설명
                 j === 0
                     ? (MainTitle['Title'] = DivExtractionInput(
-                        titleChildren[j]
+                    titleChildren[j]
                     ))
                     : (MainTitle['Descrip'] = DivExtractionInput(
-                        titleChildren[j]
+                    titleChildren[j]
                     ))
             }
             CollectionItem['Title'] = MainTitle
@@ -724,7 +726,7 @@ Survey.prototype.SaveSurvey = function () {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                 }
                 if (SelectedItemValue == 1) {
                     //장문형
@@ -732,14 +734,14 @@ Survey.prototype.SaveSurvey = function () {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                 }
                 //라디오 버튼
                 if (SelectedItemValue == 2) {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                     const TempitemArray = []
                     for (let k = 0; k < itemCenterchildren.length - 1; k++) {
                         if (k === 0) {
@@ -760,7 +762,7 @@ Survey.prototype.SaveSurvey = function () {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                     const TempitemArray = []
                     for (let k = 0; k < itemCenterchildren.length - 1; k++) {
                         if (k === 0) {
@@ -780,7 +782,7 @@ Survey.prototype.SaveSurvey = function () {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                     const TempitemArray = {}
                     const RowArray = []
                     const ColumnArray = []
@@ -818,7 +820,7 @@ Survey.prototype.SaveSurvey = function () {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                 }
                 if (SelectedItemValue == 1) {
                     //장문형
@@ -826,14 +828,14 @@ Survey.prototype.SaveSurvey = function () {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                 }
                 //라디오 버튼
                 if (SelectedItemValue == 2) {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                     const TempitemArray = []
                     for (let k = 0; k < itemCenterchildren.length - 1; k++) {
                         if (k === 0) {
@@ -854,7 +856,7 @@ Survey.prototype.SaveSurvey = function () {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                     const TempitemArray = []
                     for (let k = 0; k < itemCenterchildren.length - 1; k++) {
                         if (k === 0) {
@@ -867,14 +869,17 @@ Survey.prototype.SaveSurvey = function () {
                             const Fitem = item[0].children[0].children[1]
                             TempitemArray.push(DivExtractionInput(Fitem))
                         }
+
                     }
+                    TempJson['item'] = TempitemArray
+
                 }
                 //그리드
                 if (SelectedItemValue == 4) {
                     TempJson['Option'] = SelectedItemValue
                     TempJson['OptionName'] = this.SelectOptionText[
                         SelectedItemValue
-                    ]
+                        ]
                     const TempitemArray = {}
                     const RowArray = []
                     const ColumnArray = []
@@ -897,8 +902,8 @@ Survey.prototype.SaveSurvey = function () {
             ItemArray.push(TempJson)
         }
     }
-    console.log(1);
-    console.dir(CollectionItem);
+    CollectionItem['item'] = ItemArray
+    return CollectionItem;
 }
 //Div의 innerHTML 요소를 추출
 const DivExtractionInput = (div, state = 0) => {
@@ -917,23 +922,23 @@ const DivExtractionInput = (div, state = 0) => {
 }
 
 //JSON데이터 저장 함수
-Survey.prototype.loadSurvey = function () {
-    const { Title } = this.SurveyCollection;
+Survey.prototype.loadSurvey = function(){
+    const {Title} = this.SurveyCollection;
     console.log(Title.Descrip);
     //타이틀 부여
-    this.createSurveyTitle(Title.Title, Title.Descrip)
-    //아이템 추가 
-    const { item } = this.SurveyCollection;
+    this.createSurveyTitle(Title.Title,Title.Descrip)
+    //아이템 추가
+    const {item} = this.SurveyCollection;
     console.log(item);
 }
 // 제일 처음 실행어야 하는 함수
-Survey.prototype.createSurvey = function () {
+Survey.prototype.createSurvey = function() {
     //설문지의 이름 제작
-    if (this.SurveyCollection !== undefined && this.SurveyCollection !== null) {
-        this.loadSurvey();
-    }
-    else {
-        this.createSurveyTitle()
-    }
+    // if(this.SurveyCollection !== undefined && this.SurveyCollection !== null){
+    //     this.loadSurvey();
+    // }
+    //else{
+    this.createSurveyTitle()
+    // }
     this.createSurveyTools()
 }

@@ -2,12 +2,11 @@ package Admin;
 import Connection.ConnectionDAO;
 import Student.StudentDAO;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.sql.ResultSet;
 import java.util.Base64;
 
@@ -81,5 +80,64 @@ public class AdminDAO {
         return rs ;
     }
     //관리자 등급
+    public int InsertSurvey(String adm_id,String suv_name,String suv_descript,String Collection){
+        String Sql = "insert into sasu_suv (adm_id,dept_name,suv_name,suv_descrip,suv_stime,suv_ftime,datasys1,datasys2,datasys3)\n" +
+                "\tvalues(?,null,?,?,now(),now(),now(),'A','dkxltks25:박재홍');";
+        int result = 0;
+        try{
+            conn = new ConnectionDAO().GetConnection();
+            pstmt1 = conn.prepareStatement(Sql);
+            pstmt1.setString(1,adm_id);
+            pstmt1.setString(2,suv_name);
+            pstmt1.setString(3,suv_descript);
+            pstmt1.executeUpdate();
+            result = InsertSurveyItem(Collection);
+        }catch (Exception e){
+            System.out.println(e.toString());
+            e.printStackTrace();
+            result = -1;
+        }finally {
+            conn = null;
+        }
+        return result;
+    }
+    private String RecentSurveyId(){
+        String Sql = "select SUV_SUVID from sasu_suv order by suv_suvid desc limit 1;";
+        String id = "";
+        try{
+            conn = new ConnectionDAO().GetConnection();
+            PreparedStatement pstmt2 = conn.prepareStatement(Sql);
+            rs = pstmt2.executeQuery();
+            if(rs.next()){
+                id =  rs.getString(1);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            conn = null;
+        }
+        return id;
+    }
+    public int InsertSurveyItem(String Collection){
 
+        String id = RecentSurveyId();
+        String Sql = "insert into sasu_suvItem (suv_id,suv_item) values ( ? ,'"+Collection.replace("\'", "\''").replace("\"", "\\\"")+"')";
+        int result = 0;
+        try{
+            conn = new ConnectionDAO().GetConnection();
+            pstmt1 =  conn.prepareStatement(Sql);
+            pstmt1.setString(1,id);
+            System.out.println(RecentSurveyId());
+            pstmt1.executeUpdate();
+            result = 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            result = -1;
+        }finally {
+            pstmt1 = null;
+            conn= null;
+        }
+        System.out.println(result);
+        return result;
+    }
 }

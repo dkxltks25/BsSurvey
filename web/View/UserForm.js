@@ -56,7 +56,7 @@ UserForm.prototype.createShortAnswer = function (index, value = null) {
     value === null ? "" : Input.setAttribute('value', value);
     Input.setAttribute('placeholder', index.Title);
     Input.setAttribute('name',this.groupId+this.groupCount);
-   
+
     Input.setAttribute('type', 'text');
     Input.setAttribute('id', this.labelId + this.labelCount);
     Input.classList.add("validate");
@@ -146,11 +146,11 @@ UserForm.prototype.createTableAnswer = function (index, value = null) {
         if (number === 0) {
             const Td = document.createElement('td');
             TrTag.appendChild(Td);
-        } 
-            const Td = document.createElement('td');
-            Td.appendChild(document.createTextNode(index));
-            TrTag.appendChild(Td);
-        
+        }
+        const Td = document.createElement('td');
+        Td.appendChild(document.createTextNode(index));
+        TrTag.appendChild(Td);
+
     })
     Table.appendChild(TrTag);
     Column.map((index) => {
@@ -162,23 +162,23 @@ UserForm.prototype.createTableAnswer = function (index, value = null) {
                 Tr.appendChild(Td);
                 Td = document.createElement('td');
             }
-                const p = document.createElement("p");
-                const label = document.createElement('label');
-                const input = document.createElement('input');
-                input.setAttribute('type', 'radio')
-                input.setAttribute('class', 'with-gap');
-                input.setAttribute('name', this.groupId + this.groupCount)
-                const span = document.createElement('span');
-                span.appendChild(document.createTextNode(index));
-                label.appendChild(input);
-                label.appendChild(span);
-                p.appendChild(label);
-                Td.appendChild(p);
-                Tr.appendChild(Td);
+            const p = document.createElement("p");
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.setAttribute('type', 'radio')
+            input.setAttribute('class', 'with-gap');
+            input.setAttribute('name', this.groupId + this.groupCount)
+            const span = document.createElement('span');
+            span.appendChild(document.createTextNode(index));
+            label.appendChild(input);
+            label.appendChild(span);
+            p.appendChild(label);
+            Td.appendChild(p);
+            Tr.appendChild(Td);
         })
         Table.appendChild(Tr);
         this.groupCount++;
-        
+
     })
     ItemCenter.appendChild(Table);
     item.appendChild(Title);
@@ -189,22 +189,24 @@ UserForm.prototype.createTableAnswer = function (index, value = null) {
 UserForm.prototype.init = function () {
     this.ReadData();
     const saveBtn = document.querySelector("#saveBtn");
-
     //저장기능
     saveBtn.addEventListener('click',()=>{
+        const UserAnswer = [];
         for(let i = 1; i<this.groupCount;i++){
             const Names = document.getElementsByName(this.groupId+i);
+            const AnswerItem = [];
             for(let j = 0; j<Names.length;j++){
-                
                 if(Names.length === 1){
-                    console.log("장문 혹은 답답에 대한 응답"+Names[j].value);
+                    AnswerItem.push(Names[j].value);
                 }else{
                     if(Names[j].checked === true){
-                        console.log(Names[j]);
+                        AnswerItem.push(j);
                     }
                 }
-                
             }
+            UserAnswer.push(AnswerItem);
+            alert(JSON.stringify(UserAnswer));
+            location.href=`/Action/UserResponseAction.jsp?Answer=${JSON.stringify(UserAnswer)}&SurveyId=${Idx}`;
         }
     })
 }

@@ -64,6 +64,7 @@
         String str2 = new String(t,"UTF-8");
          %>
             <script>
+                const Idx = <%=idx%>;
                 var collection = <%=str2%>;
                 collection = JSON.parse(collection);
             </script>
@@ -82,15 +83,10 @@
             </blockquote>
         </div>
         <div class="SurveyBottom">
-            <button class="btn waves-effect waves-light" type="button" id = "saveBtn"name="click">설문지 저장
+            <button class="btn waves-effect waves-light" type="button" id = "saveBtn"name="click">참여완료
                 <i class="material-icons right">send</i>
             </button>
-            <button class="btn waves-effect waves-light leftBtn" type="button" name="click">이전작성보기
-                <i class="material-icons right">navigate_before</i>
-            </button>
-            <button class="btn waves-effect waves-light RightBtn" type="button" name="click">작성완료
-                <i class="material-icons right">navigate_next</i>
-            </button>
+
         </div>
     </div>
 </div>
