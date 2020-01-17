@@ -52,14 +52,13 @@ public class SurveyDAO {
         return rs;
     }
     public int InsertUserResponse(String UserId,String SurveyId, String UserResponse){
-        String Sql = "Insert into SASU_UsrRes (UserRes_stuno ,UserRes_Res,SUV_id ,datasys1) values(?,?,?,now()) ";
+        String Sql = "Insert into SASU_UsrRes (UserRes_stuno ,UserRes_Res,SUV_id ,datasys1) values(?,'"+UserResponse.replace("\'", "\''").replace("\"", "\\\"") +"',?,now()) ";
         int result = 0;
         try{
             conn = new ConnectionDAO().GetConnection();
             pstmt1 = conn.prepareStatement(Sql);
             pstmt1.setString(1,UserId);
-            pstmt1.setString(2,UserResponse.replace("\'", "\''").replace("\"", "\\\""));
-            pstmt1.setString(3,SurveyId);
+            pstmt1.setString(2,SurveyId);
             pstmt1.executeUpdate();
             result = 1;
         }catch (Exception e){

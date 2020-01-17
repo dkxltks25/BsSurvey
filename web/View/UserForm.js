@@ -30,7 +30,7 @@ UserForm.prototype.ReadData = function () {
                 this.createMultipleRadio(index);
                 break;
             case 3:
-                console.log("단답형");
+                this.createMultipleCheck(index)
                 break;
             case 4:
                 this.createTableAnswer(index);
@@ -125,8 +125,34 @@ UserForm.prototype.createMultipleRadio = function (index, value = null) {
     container.children[container.children.length - 2].after(item);
 }
 //객관식1
-UserForm.prototype.createMultipleCheck = function () {
+UserForm.prototype.createMultipleCheck = function (index) {
+    const item = document.createElement('div');
+    item.classList.add('Item');
+    const Title = CreateTitleAndDescrip(index.Title, index.Descrip === undefined ? undefined : index.Descrip);
+    const ItemCenter = document.createElement('form');
+    ItemCenter.classList.add('ItemCenter');
+    const { item: Items } = index;
 
+    Items.map((index) => {
+        const p = document.createElement("p");
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.setAttribute('type', 'checkbox')
+        input.setAttribute('class', 'with-gap');
+        input.setAttribute('name', this.groupId + this.groupCount)
+        const span = document.createElement('span');
+        span.appendChild(document.createTextNode(index));
+        label.appendChild(input);
+        label.appendChild(span);
+        p.appendChild(label);
+        ItemCenter.appendChild(p);
+
+    })
+    this.groupCount++;
+    item.appendChild(Title);
+    item.appendChild(ItemCenter);
+
+    container.children[container.children.length - 2].after(item);
 }
 //그리드
 UserForm.prototype.createTableAnswer = function (index, value = null) {
@@ -205,9 +231,10 @@ UserForm.prototype.init = function () {
                 }
             }
             UserAnswer.push(AnswerItem);
-            alert(JSON.stringify(UserAnswer));
-            location.href=`/Action/UserResponseAction.jsp?Answer=${JSON.stringify(UserAnswer)}&SurveyId=${Idx}`;
+
         }
+        alert(JSON.stringify(UserAnswer));
+        location.href=`/Action/UserResponseAction.jsp?Answer=${JSON.stringify(UserAnswer)}&SurveyId=${Idx}`;
     })
 }
 

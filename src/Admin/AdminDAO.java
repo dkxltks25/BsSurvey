@@ -140,4 +140,51 @@ public class AdminDAO {
         System.out.println(result);
         return result;
     }
+
+    public ResultSet StaticListData(String SurveyId){
+        String Sql = "Select SU.*,SI.*,CONVERT(SI.SUV_ITEM USING UTF8),CONVERT(USERRES_RES USING utf8) from sasu_suv AS SU \n" +
+                "\tinner join sasu_suvitem as SI\n" +
+                "\t\ton SU.SUV_SUVID = SI.SUV_ID \n" +
+                "\t\t\tinner join sasu_usrres as SR \n" +
+                "\t\t\t\ton SI.SUV_ID = SR.SUV_ID where SUV_SUVID = ?";
+        ResultSet rs = null ;
+        try{
+            conn = new ConnectionDAO().GetConnection();
+            pstmt1 = conn.prepareStatement(Sql);
+            pstmt1.setString(1,SurveyId);
+            rs = pstmt1.executeQuery();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            conn = null;
+        }
+        return rs;
+    }
+
+    public ResultSet StaticUserList(String admin){
+        String Sql = "SELECT SS.SUV_SUVID,SS.SUV_NAME,SS.SUV_DESCRIP,COUNT(if(SUR.USERRES_STUNO is not null,1,null)) as RES,COUNT(if(SUR.USERRES_STUNO is null,1,null)) as A ,\n" +
+                "\tSS.SUV_STIME,SS.SUV_FTIME FROM SASU_SUV AS SS\t\n" +
+                "\tinner join SASU_SUVDEPT AS SSD\n" +
+                "\t\tON SS.SUV_SUVID = SSD.SUV_ID\n" +
+                "\tinner join SASU_STd AS ST\n" +
+                "\t\tON ST.STU_DEPT = SSD.DEPT_NAME\n" +
+                "\tleft join SASU_USRRES AS SUR\n" +
+                "\t\tON SUR.USERRES_STUNO = ST.STU_STUNO AND SUR.SUV_ID = SS.SUV_SUVID\n" +
+                "        where ss.Adm_id = ?" +
+                "        group by SS.SUV_SUVID;\n" +
+                "\t;";
+        ResultSet rs = null;
+        try{
+            conn = new ConnectionDAO().GetConnection();
+            pstmt1 = conn.prepareStatement(Sql);
+            pstmt1.setString(1,admin);
+            rs = pstmt1.executeQuery();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            pstmt1 = null;
+            conn = null;
+        }
+        return rs;
+    }
 }

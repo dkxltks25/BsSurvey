@@ -85,7 +85,6 @@
         Form.appendChild(hiddenField2);
 
         document.body.appendChild(Form);
-        Form.appendChild(hiddenField);
         Form.submit();
 
     });

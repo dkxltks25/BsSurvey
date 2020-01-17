@@ -98,4 +98,12 @@
         <servlet-name>lib</servlet-name>
         <url-pattern>/lib/UserForm.js</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>static</servlet-name>
+        <jsp-file>/View/SurveyStatistics.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>static</servlet-name>
+        <url-pattern>/admin/static</url-pattern>
+    </servlet-mapping>
 </web-app>
