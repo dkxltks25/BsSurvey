@@ -55,11 +55,9 @@ function Survey(container) {
     this.SelectOptionText = [
         '단답형',
         '장문형',
-        '객관식',
-        '체크박스',
-        '직선단계',
+        '객관식1',
+        '객관식2',
         '그리드',
-        '체크박스 그리드',
     ]
 
     //form 이름

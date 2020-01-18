@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="/View/CssLoader.jsp"/>
-<script src="http://l.bsks.ac.kr/~p201887082/DiliManage/js/jq.js"/>
+<script src="http://l.bsks.ac.kr/~p201887082/DiliManage/js/jq.js"></script>
 <link rel="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 
@@ -193,6 +193,7 @@
                         }
                         const tbody = document.createElement('tbody');
                         const TdTag1 = document.createElement('td');
+                        TdTag1.classList.add("draw");
                         TdTag1.setAttribute('colspan',6);
                         item.map((index,number)=>{
                             const Option = index.Option;
@@ -211,7 +212,8 @@
                                         tbody.appendChild(Tr);
                                         Tr.addEventListener('click',()=>{
                                             let a = GetData(FormData,UserRes,number+num);
-                                            console.log(a);
+                                               DrawChart(a);
+                                               console.log(1);
                                         })
 
                                     });
@@ -226,41 +228,9 @@
                                     Tr.appendChild(Td1);
                                     tbody.appendChild(Tr);
                                     Tr.addEventListener('click',()=>{
-                                        let datacolumn = GetData(FormData,UserRes,number);
-                                        let label =[]; datacolumn.map((index)=>label.push(1));
-                                        const CustomCanvas = document.createElement("canvas");
-                                        CustomCanvas.classList.add(`CustomCanvas1`);
-                                        CustomCanvas.setAttribute('width',"420px");
-                                        CustomCanvas.setAttribute('height',"400px");
-                                        const myChart = new Chart(CustomCanvas.getContext('2d'), {
-                                            type: 'pie',
-                                            data: {
-                                                labels: label,
-                                                datasets: [{
-                                                    label: `특정행의 인원 수`,
-                                                    data: datacolumn,
-                                                    backgroundColor: [
-                                                        'rgba(255, 99, 132, 0.2)',
-                                                        'rgba(54, 162, 235, 0.2)',
-                                                        'rgba(255, 206, 86, 0.2)',
-                                                        'rgba(75, 192, 192, 0.2)',
-                                                        'rgba(153, 102, 255, 0.2)',
-                                                        'rgba(255, 159, 64, 0.2)'
-                                                    ],
-                                                    borderColor: [
-                                                        'rgba(255, 99, 132, 1)',
-                                                        'rgba(54, 162, 235, 1)',
-                                                        'rgba(255, 206, 86, 1)',
-                                                        'rgba(75, 192, 192, 1)',
-                                                        'rgba(153, 102, 255, 1)',
-                                                        'rgba(255, 159, 64, 1)'
-                                                    ],
-                                                    borderWidth: 1
-                                                }]
-                                            },
-                                        });
-                                        TdTag1.appendChild(CustomCanvas);
-                                        console.log(CustomCanvas);
+                                        let a = GetData(FormData,UserRes,number);
+                                        DrawChart(a);
+                                        console.log(1);
                                     })
                                 }
 
@@ -283,7 +253,7 @@
                         Table.appendChild(tbody);
                         const TdTag = document.createElement('td');
                         TdTag.setAttribute('colspan',3);
-                        TdTag.appendChild(Table)
+                        TdTag.appendChild(Table);
                         TrTag.appendChild(TdTag);
 
                         TrTag.appendChild(TdTag1);
@@ -298,6 +268,50 @@
                 })
             })
         }
+    }
+    const DrawChart =(a)=>{
+        const tdDraw = document.querySelectorAll(".draw")[0];
+        console.dir(tdDraw)
+        const SelectCanvas = document.querySelectorAll(".CustomCanvas1")[0];
+        if(SelectCanvas !== undefined){
+            SelectCanvas.remove();
+        }
+        const CustomCanvas = document.createElement("canvas");
+        CustomCanvas.classList.add(`CustomCanvas1`);
+        CustomCanvas.setAttribute('width',"420px");
+        CustomCanvas.setAttribute('height',"200px");
+        tdDraw.appendChild(CustomCanvas);
+        const label = [];
+        a.map((_,number)=>label.push(number+1));
+        console.log(label);
+        console.log(a);
+        const myChart = new Chart(CustomCanvas.getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: `통계`,
+                    data: a,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+        });
     }
     const GetData = (FormData, UserRes,returnNumber) => {
         const ExcelData = {};
