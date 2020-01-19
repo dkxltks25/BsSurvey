@@ -19,10 +19,8 @@
     int i = 0;
     JSONObject jobj = new JSONObject();
     JSONArray jarr = new JSONArray();
-    String Test = "[";
     while(rs.next()){
         if(i == 0) {
-
             jobj.put("SurveyForm", rs.getString(14));
             System.out.println(rs.getString(14));
         }

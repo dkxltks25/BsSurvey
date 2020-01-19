@@ -14,7 +14,7 @@
     PrintWriter script = response.getWriter();
     if(Result == 0 || Result == -1) {
         script.println("<script>");
-        script.println("아이디 혹은 패스워드가 잘못되었습니다.");
+        script.println("alert('아이디 혹은 패스워드가 잘못되었습니다.')");
         script.println("location.href='/'");
         script.println("</script>");
     }else if(Result == 1){

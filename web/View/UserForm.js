@@ -195,7 +195,6 @@ UserForm.prototype.createTableAnswer = function (index, value = null) {
             input.setAttribute('class', 'with-gap');
             input.setAttribute('name', this.groupId + this.groupCount)
             const span = document.createElement('span');
-            span.appendChild(document.createTextNode(index));
             label.appendChild(input);
             label.appendChild(span);
             p.appendChild(label);

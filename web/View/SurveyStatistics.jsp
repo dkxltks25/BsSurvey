@@ -152,7 +152,6 @@
         for(let i = 0; i<dropdownIcon.length;i++){
             dropdownIcon[i].addEventListener('click',(e)=>{
                 const {target:{dataset:{id}}} = e;
-                console.log(id);
                 const {target:{dataset:{class:TagId}}} = e;
                 const {target}=e;
                 if(target.tagName != "TD"){
@@ -168,18 +167,17 @@
                     dataType:"text",
                     cache:false,
                     success:(data)=>{
-
                         //replaceAllBackSlash(data.trim())
                         const Temp = data.trim();
-
                         const SuccesData = JSON.parse(Temp);
-                        console.log(SuccesData  );
-
+                        console.log(SuccesData);
                         const FormData = JSON.parse(SuccesData.SurveyForm.replace(/\\/g,''));
-                        const UserRes = [];
+                        const UserRes = []
+                        console.log(FormData);
                         SuccesData.UserRes.map((index)=>{
                             UserRes.push(JSON.parse(index));
-                        })
+                        });
+                        console.log(1);
                         //const UserRes = JSON.parse(SuccesData.UserRes[0].replace(/\\/g,''));
                        // const b = SuccesData.UserRes.map((index)=>console.log(index));
                         //console.log(b);

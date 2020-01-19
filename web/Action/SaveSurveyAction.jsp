@@ -19,6 +19,8 @@
     String suv_stime;
     String suv_ftime;
 
+    System.out.println(Collection);
+    //int result = 0;
     int result =  new AdminDAO().InsertSurvey(adm_id,suv_name,suv_descript,Collection);
     if(result == 1){
         %>

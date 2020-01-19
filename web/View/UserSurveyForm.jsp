@@ -66,6 +66,7 @@
             <script>
                 const Idx = <%=idx%>;
                 var collection = <%=str2%>;
+                console.log(collection);
                 collection = JSON.parse(collection);
             </script>
         <%

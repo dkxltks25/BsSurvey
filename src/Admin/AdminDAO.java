@@ -79,10 +79,9 @@ public class AdminDAO {
         }
         return rs ;
     }
-    //관리자 등급
     public int InsertSurvey(String adm_id,String suv_name,String suv_descript,String Collection){
         String Sql = "insert into sasu_suv (adm_id,dept_name,suv_name,suv_descrip,suv_stime,suv_ftime,datasys1,datasys2,datasys3)\n" +
-                "\tvalues(?,null,?,?,now(),now(),now(),'A','dkxltks25:박재홍');";
+                "\tvalues(?,null,?,?,now(),now(),DATE_ADD(now(), INTERVAL 31 DAY),'A','dkxltks25:박재홍');";
         int result = 0;
         try{
             conn = new ConnectionDAO().GetConnection();

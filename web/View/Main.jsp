@@ -7,8 +7,9 @@
         ResultSet rs = new SurveyDAO().UserSurveyList(UserId);
         while(rs.next()){
                 String able = rs.getString("able");
+                String Uable = rs.getString("uable");
                 String ClassName = "";
-                if(able.equals("A")){
+                if(able.equals("A") && Uable.equals("U")){
                     ClassName = "disable";
                 }
             %>
@@ -21,11 +22,20 @@
                         <div class="card-content">
                             <p>
                                 <h5><%=rs.getString("suv_name")%></h5>
-                               <%=rs.getString("ST")%>부터 참가 할 수 있으며 <%=rs.getString("FT")%>일날 마무리 됩니다.
+                               <%=rs.getString("ST")%>부터 참가 할 수 있으며<br> <%=rs.getString("FT")%>일날 마무리 됩니다.
                             <p>
                         </div>
                         <div class="card-action pulse">
-                            <a class =<%=ClassName%> href="/survey/user?SurveyIdx=<%=rs.getString("suv_suvid")%>">설문조사 참여</a>
+                            <%if(able.equals("A") && Uable.equals("U")){
+                                %>
+                                    <a class =<%=ClassName%> href="/survey/user?SurveyIdx=<%=rs.getString("suv_suvid")%>">설문조사 참여</a>
+                                <%
+                            }else{
+                                %>
+                                    <span>설문조사 참여 완료</span>
+                                <%
+                            }
+                                %>
                         </div>
                     </div>
                 </div>
